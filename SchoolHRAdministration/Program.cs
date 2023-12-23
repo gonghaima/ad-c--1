@@ -7,6 +7,17 @@ namespace SchoolHRAdministration
         static void Main()
         {
             Console.WriteLine("Hello, World!");
+            decimal totalSalaries = 0;
+            List<IEmployee> employees = new List<IEmployee>();
+            SeedData(employees);
+
+            foreach(IEmployee employee in employees){
+                totalSalaries += employee.Salary;
+            }
+
+            Console.WriteLine($"Total Annual Salaries (Including bonus): {totalSalaries}");
+            Console.ReadKey();
+
         }
 
         public static void SeedData(List<IEmployee> employees)
@@ -35,16 +46,16 @@ namespace SchoolHRAdministration
 
     public class HeadOfDepartment : EmployeeBase
     {
-
+        public override decimal Salary { get => base.Salary + (base.Salary * 0.03m); }
     }
 
     public class DeputyHeadMaster : EmployeeBase
     {
-
+        public override decimal Salary { get => base.Salary + (base.Salary * 0.04m); }
     }
 
     public class HeadMaster : EmployeeBase
     {
-
+        public override decimal Salary { get => base.Salary + (base.Salary * 0.05m); }
     }
 }
