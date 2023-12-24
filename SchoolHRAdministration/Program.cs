@@ -1,5 +1,6 @@
 ﻿using System;
 using HRAdministrationAPI;
+using System.Linq;
 namespace SchoolHRAdministration
 {
     class Program
@@ -11,11 +12,14 @@ namespace SchoolHRAdministration
             List<IEmployee> employees = new List<IEmployee>();
             SeedData(employees);
 
-            foreach(IEmployee employee in employees){
-                totalSalaries += employee.Salary;
-            }
+            //foreach(IEmployee employee in employees){
+            //    totalSalaries += employee.Salary;
+            //}
 
-            Console.WriteLine($"Total Annual Salaries (Including bonus): {totalSalaries}");
+            //Console.WriteLine($"Total Annual Salaries (Including bonus): {totalSalaries}");
+
+            Console.WriteLine($"Total Annual Salaries (Including bonus): {employees.Sum(e=>e.Salary)}");
+
             Console.ReadKey();
 
         }
