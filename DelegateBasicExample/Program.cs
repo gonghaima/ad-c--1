@@ -2,21 +2,30 @@
 
 class Program
 {
-    delegate void LogDel(string text, DateTime dateTime);
+    delegate void LogDel(string text);
     static void Main(string[] args)
     {
-        LogDel logDel = new LogDel(LogTextToScreen);
-        //logDel.Invoke("text");
+        //LogDel logDel = new LogDel(LogTextToScreen);
+        LogDel logDel = new LogDel(LogTextToFile);
         Console.WriteLine("Please enter your name");
         var name = Console.ReadLine();
 
-        logDel(name, DateTime.Now);
+        //logDel.Invoke("text");
+        logDel(name);
         Console.ReadKey();
     }
 
-    static void LogTextToScreen(  string text, DateTime dateTime)
+    static void LogTextToScreen(  string text)
     {
-        Console.WriteLine($"{dateTime}: {text}");
+        Console.WriteLine($"{DateTime.Now}: {text}");
+    }
+
+    static void LogTextToFile(string text)
+    {
+        using (StreamWriter sw = new StreamWriter(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Log.txt"), true))
+        {
+            sw.WriteLine($"{DateTime.Now}: {text}");
+        }
     }
 }
 
