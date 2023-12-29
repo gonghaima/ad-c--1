@@ -6,7 +6,8 @@ class Program
     static void Main(string[] args)
     {
         //LogDel logDel = new LogDel(LogTextToScreen);
-        LogDel logDel = new LogDel(LogTextToFile);
+        Log log = new Log();
+        LogDel logDel = new LogDel(log.LogTextToFile);
         Console.WriteLine("Please enter your name");
         var name = Console.ReadLine();
 
@@ -15,12 +16,29 @@ class Program
         Console.ReadKey();
     }
 
-    static void LogTextToScreen(  string text)
+    //static void LogTextToScreen(  string text)
+    //{
+    //    Console.WriteLine($"{DateTime.Now}: {text}");
+    //}
+
+    //static void LogTextToFile(string text)
+    //{
+    //    using (StreamWriter sw = new StreamWriter(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Log.txt"), true))
+    //    {
+    //        sw.WriteLine($"{DateTime.Now}: {text}");
+    //    }
+    //}
+}
+
+public class Log
+{
+    public void LogTextToScreen(string text)
     {
         Console.WriteLine($"{DateTime.Now}: {text}");
+
     }
 
-    static void LogTextToFile(string text)
+    public void LogTextToFile(string text)
     {
         using (StreamWriter sw = new StreamWriter(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Log.txt"), true))
         {
