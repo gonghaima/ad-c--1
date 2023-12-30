@@ -7,12 +7,18 @@ class Program
     {
         //LogDel logDel = new LogDel(LogTextToScreen);
         Log log = new Log();
-        LogDel logDel = new LogDel(log.LogTextToFile);
+        LogDel LogTextToScreenDel, LogTextToFileDel;
+
+        LogTextToScreenDel = new LogDel(log.LogTextToScreen);
+        LogTextToFileDel = new LogDel(log.LogTextToFile);
+
+        LogDel multiLogDel = LogTextToScreenDel + LogTextToFileDel;
+
         Console.WriteLine("Please enter your name");
         var name = Console.ReadLine();
 
         //logDel.Invoke("text");
-        logDel(name);
+        multiLogDel(name);
         Console.ReadKey();
     }
 
