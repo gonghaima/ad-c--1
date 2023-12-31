@@ -18,8 +18,15 @@ class Program
         var name = Console.ReadLine();
 
         //logDel.Invoke("text");
-        multiLogDel(name);
+        //multiLogDel(name);
+        LogText(multiLogDel, name);
+        
         Console.ReadKey();
+    }
+
+    static void LogText(LogDel logDel, string text)
+    {
+        logDel(text);
     }
 
     //static void LogTextToScreen(  string text)
